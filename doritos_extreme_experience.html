@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doritos Extreme Experience | Bold Flavor. Ultimate Crunch.</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Montserrat & Oswald -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                    },
+                    colors: {
+                        doritosDark: '#0a0a0a',
+                        doritosOrange: '#ff4500',
+                        doritosRed: '#e60012',
+                        doritosGreen: '#00cc66',
+                        doritosBlue: '#00a2ff',
+                        doritosPurple: '#9933ff'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .neon-glow-orange {
+            text-shadow: 0 0 10px rgba(255, 69, 0, 0.8), 0 0 20px rgba(255, 69, 0, 0.5), 0 0 30px rgba(255, 69, 0, 0.3);
+        }
+        
+        .neon-glow-red {
+            text-shadow: 0 0 10px rgba(230, 0, 18, 0.8), 0 0 20px rgba(230, 0, 18, 0.5);
+        }
+
+        .flavor-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .flavor-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        .floating-chip {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff4500;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="bg-doritosDark text-white font-sans antialiased selection:bg-doritosOrange selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-doritosOrange to-doritosRed flex items-center justify-center shadow-lg shadow-doritosOrange/50 group-hover:rotate-12 transition-transform">
+                    <i class="fa-solid fa-triangle text-white text-xl"></i>
+                </div>
+                <span class="font-display font-bold text-2xl tracking-wider bg-gradient-to-r from-doritosOrange via-doritosRed to-yellow-500 bg-clip-text text-transparent">DORITOS</span>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-8 font-semibold text-sm uppercase tracking-wider">
+                <a href="#hero" class="hover:text-doritosOrange transition-colors">Start</a>
+                <a href="#flavors" class="hover:text-doritosOrange transition-colors">Smaki</a>
+                <a href="#generator" class="hover:text-doritosOrange transition-colors">Kreator Chrupkości</a>
+                <a href="#reviews" class="hover:text-doritosOrange transition-colors">Legendy</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <button onclick="openModal()" class="bg-gradient-to-r from-doritosOrange to-doritosRed text-white px-5 py-2.5 rounded-full font-extrabold uppercase text-xs tracking-wider shadow-lg shadow-doritosOrange/40 hover:shadow-doritosOrange/80 hover:scale-105 transition-all">
+                    Kup Teraz <i class="fa-solid fa-cart-shopping ml-1"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-900 via-black to-black">
+        <!-- Glowing background blobs -->
+        <div id="hero-glow" class="absolute w-[500px] h-[500px] bg-doritosOrange/20 rounded-full blur-[120px] pointer-events-none transition-all duration-700"></div>
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-doritosRed/20 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="text-center lg:text-left">
+                <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-doritosOrange animate-ping"></span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-doritosOrange">Nowa Era Chrupania</span>
+                </div>
+                <h1 class="font-display text-5xl sm:text-7xl lg:text-8xl font-black uppercase tracking-tight leading-none mb-6">
+                    Bold Flavor. <br>
+                    <span id="hero-title-accent" class="bg-gradient-to-r from-doritosOrange via-doritosRed to-yellow-500 bg-clip-text text-transparent neon-glow-orange">Ultimate Crunch.</span>
+                </h1>
+                <p class="text-neutral-400 text-lg sm:text-xl max-w-xl mx-auto lg:mx-0 mb-8 font-medium">
+                    Poczuj ekstremalną moc trójkątów, które podbiły cały świat. Intensywne smaki, legendarna chrupkość i styl dla prawdziwych graczy i poszukiwaczy wrażeń.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <a href="#flavors" class="w-full sm:w-auto bg-white text-black font-extrabold px-8 py-4 rounded-full uppercase tracking-wider hover:bg-neutral-200 transition-colors shadow-xl text-center">
+                        Odkryj Smaki
+                    </a>
+                    <a href="#generator" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 border border-white/20 text-white font-extrabold px-8 py-4 rounded-full uppercase tracking-wider backdrop-blur-md transition-all text-center">
+                        Stwórz Swój Mix
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Graphic / Interactive Chip preview -->
+            <div class="relative flex justify-center items-center">
+                <div class="absolute w-72 h-72 sm:w-96 sm:h-96 bg-gradient-to-tr from-doritosOrange/30 to-doritosRed/30 rounded-full blur-3xl animate-pulse"></div>
+                <div id="hero-chip-container" class="relative z-10 floating-chip w-72 h-72 sm:w-96 sm:h-96 flex items-center justify-center">
+                    <!-- SVG Interactive Doritos Nacho Cheese representation -->
+                    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-[0_20px_30px_rgba(255,69,0,0.4)] transition-all duration-500" id="main-chip-svg">
+                        <polygon points="100,10 190,180 10,180" fill="url(#chipGradient)" stroke="#ffb703" stroke-width="4" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="chipGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ffb703" />
+                                <stop offset="50%" stop-color="#ff4500" />
+                                <stop offset="100%" stop-color="#cc1100" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Seasoning details -->
+                        <circle cx="100" cy="100" r="8" fill="#ffd166" opacity="0.6"/>
+                        <circle cx="70" cy="130" r="5" fill="#6a040f" opacity="0.7"/>
+                        <circle cx="130" cy="140" r="6" fill="#ffd166" opacity="0.6"/>
+                        <circle cx="90" cy="70" r="4" fill="#6a040f" opacity="0.7"/>
+                        <circle cx="120" cy="90" r="7" fill="#370617" opacity="0.8"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="flavors" class="py-24 bg-neutral-950 relative border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-doritosOrange font-bold uppercase tracking-widest text-sm">Wybierz Swoją Broń</span>
+                <h2 class="font-display text-4xl sm:text-6xl font-black uppercase mt-2 mb-4">Legendarny Skład Smaków</h2>
+                <p class="text-neutral-400">Kliknij na dowolny smak, aby aktywować jego unikalną moc i poznać szczegóły.</p>
+            </div>
+
+            <!-- Flavor selection tabs -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                <button onclick="setFlavor('nacho')" id="btn-nacho" class="flavor-tab active-tab bg-neutral-900 border-2 border-doritosOrange text-white p-5 rounded-2xl flex flex-col items-center justify-center transition-all shadow-lg group">
+                    <i class="fa-solid fa-fire text-3xl text-doritosOrange mb-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-bold text-lg uppercase tracking-wide">Nacho Cheese</span>
+                    <span class="text-xs text-neutral-400 mt-1">Klasyk z serem</span>
+                </button>
+                <button onclick="setFlavor('flamin')" id="btn-flamin" class="flavor-tab bg-neutral-900 border-2 border-white/10 hover:border-doritosRed text-white p-5 rounded-2xl flex flex-col items-center justify-center transition-all shadow-lg group">
+                    <i class="fa-solid fa-pepper-hot text-3xl text-doritosRed mb-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-bold text-lg uppercase tracking-wide">Flamin' Hot</span>
+                    <span class="text-xs text-neutral-400 mt-1">Ekstremalna ostrość</span>
+                </button>
+                <button onclick="setFlavor('ranch')" id="btn-ranch" class="flavor-tab bg-neutral-900 border-2 border-white/10 hover:border-doritosBlue text-white p-5 rounded-2xl flex flex-col items-center justify-center transition-all shadow-lg group">
+                    <i class="fa-solid fa-snowflake text-3xl text-doritosBlue mb-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-bold text-lg uppercase tracking-wide">Cool Ranch</span>
+                    <span class="text-xs text-neutral-400 mt-1">Świeże zioła</span>
+                </button>
+                <button onclick="setFlavor('sweet')" id="btn-sweet" class="flavor-tab bg-neutral-900 border-2 border-white/10 hover:border-doritosGreen text-white p-5 rounded-2xl flex flex-col items-center justify-center transition-all shadow-lg group">
+                    <i class="fa-solid fa-bolt text-3xl text-doritosGreen mb-2 group-hover:scale-110 transition-transform"></i>
+                    <span class="font-display font-bold text-lg uppercase tracking-wide">Sweet Chili</span>
+                    <span class="text-xs text-neutral-400 mt-1">Słodko-ostry</span>
+                </button>
+            </div>
+
+            <!-- Active Flavor Detailed Display Box -->
+            <div id="flavor-display-box" class="bg-gradient-to-br from-neutral-900 to-black border border-white/10 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-doritosOrange/10 rounded-full blur-3xl" id="flavor-box-glow"></div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                    <div class="lg:col-span-5 text-center">
+                        <div id="flavor-badge-icon" class="w-40 h-40 sm:w-56 sm:h-56 mx-auto rounded-3xl bg-gradient-to-tr from-doritosOrange to-yellow-500 flex items-center justify-center shadow-2xl shadow-doritosOrange/30 transform hover:rotate-6 transition-transform">
+                            <i id="flavor-large-icon" class="fa-solid fa-fire text-7xl text-white"></i>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span id="flavor-tag" class="bg-doritosOrange text-black font-extrabold text-xs uppercase px-3 py-1 rounded-full">Bestseller</span>
+                            <div class="flex items-center text-yellow-400 space-x-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span class="text-white text-xs font-bold ml-1">(4.9/5)</span>
+                            </div>
+                        </div>
+                        <h3 id="flavor-title" class="font-display text-3xl sm:text-5xl font-black uppercase mb-4">Nacho Cheese</h3>
+                        <p id="flavor-desc" class="text-neutral-300 text-base sm:text-lg mb-6 leading-relaxed">
+                            Ikoniczny smak chrupiących tortilli kukurydzianych z bogatą kompozycją topionego sera cheddar i sekretnych przypraw. Prawdziwa legenda imprez i gamingu.
+                        </p>
+                        
+                        <!-- Meter levels -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            <div>
+                                <div class="flex justify-between text-sm font-bold mb-1">
+                                    <span class="text-neutral-400">Poziom Ostrości</span>
+                                    <span id="spice-text" class="text-doritosOrange">Średni (2/5)</span>
+                                </div>
+                                <div class="w-full bg-neutral-800 h-3 rounded-full overflow-hidden">
+                                    <div id="spice-bar" class="bg-gradient-to-r from-yellow-500 to-doritosOrange h-full rounded-full transition-all duration-500" style="width: 40%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm font-bold mb-1">
+                                    <span class="text-neutral-400">Poziom Chrupkości</span>
+                                    <span id="crunch-text" class="text-doritosOrange">Ekstremalny (5/5)</span>
+                                </div>
+                                <div class="w-full bg-neutral-800 h-3 rounded-full overflow-hidden">
+                                    <div id="crunch-bar" class="bg-gradient-to-r from-doritosOrange to-doritosRed h-full rounded-full transition-all duration-500" style="width: 100%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="openModal()" class="bg-white text-black font-extrabold px-8 py-3.5 rounded-full uppercase tracking-wider hover:bg-neutral-200 transition-colors shadow-lg">
+                            Zamów paczkę <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="generator" class="py-24 bg-black relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-neutral-900 via-neutral-900 to-neutral-950 border border-white/10 rounded-3xl p-8 sm:p-16 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-doritosRed/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <span class="text-doritosRed font-bold uppercase tracking-widest text-sm">Laboratorium Chrupania</span>
+                    <h2 class="font-display text-4xl sm:text-5xl font-black uppercase mt-2 mb-4">Stwórz Własny Mix Doritos</h2>
+                    <p class="text-neutral-400">Dopasuj parametry i zobacz, jaki potwór smaku wyjdzie z naszego miksera!</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <!-- Controls -->
+                    <div class="space-y-8">
+                        <div>
+                            <label class="block font-display text-lg uppercase tracking-wide mb-2 flex justify-between">
+                                <span>1. Wybierz Bazę Kukurydzianą</span>
+                                <span id="val-base" class="text-doritosOrange">Trójkąt Klasyczny</span>
+                            </label>
+                            <select id="gen-base" onchange="updateGenerator()" class="w-full bg-neutral-800 border border-white/10 rounded-xl px-4 py-3 text-white font-bold focus:outline-none focus:border-doritosOrange">
+                                <option value="Klasyczny Trójkąt Złocisty">Klasyczny Trójkąt Złocisty</option>
+                                <option value="Grube Rolki Mega-Crunch">Grube Rolki Mega-Crunch</option>
+                                <option value="Mini Trójkąty Imprezowe">Mini Trójkąty Imprezowe</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block font-display text-lg uppercase tracking-wide mb-2 flex justify-between">
+                                <span>2. Intensywność Chrupkości</span>
+                                <span id="val-crunch" class="text-doritosOrange">90%</span>
+                            </label>
+                            <input type="range" id="gen-crunch-slider" min="50" max="100" value="90" oninput="updateGenerator()" class="w-full accent-doritosOrange cursor-pointer">
+                        </div>
+
+                        <div>
+                            <label class="block font-display text-lg uppercase tracking-wide mb-2 flex justify-between">
+                                <span>3. Poziom Pikantnego Ognia</span>
+                                <span id="val-heat" class="text-doritosRed">4/5 (Ogień)</span>
+                            </label>
+                            <input type="range" id="gen-heat-slider" min="1" max="5" value="4" oninput="updateGenerator()" class="w-full accent-doritosRed cursor-pointer">
+                        </div>
+                    </div>
+
+                    <!-- Result card -->
+                    <div class="bg-black/60 border border-white/10 rounded-2xl p-8 text-center relative flex flex-col items-center justify-center shadow-inner">
+                        <div class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-doritosOrange to-doritosRed flex items-center justify-center mb-6 shadow-xl shadow-doritosOrange/30 animate-bounce">
+                            <i class="fa-solid fa-flask text-4xl text-white"></i>
+                        </div>
+                        <h4 class="text-neutral-400 uppercase text-xs font-bold tracking-widest mb-1">Twój Wygenerowany Smak:</h4>
+                        <h3 id="result-name" class="font-display text-2xl sm:text-3xl font-black text-white uppercase mb-3">Ultra Volcano Cheddar</h3>
+                        <p id="result-desc" class="text-neutral-400 text-sm mb-6">Mocny, chrupiący trójkąt z dodatkiem potrójnego sera i wędzonej papryki habanero.</p>
+                        <button onclick="saveMix()" class="bg-gradient-to-r from-doritosOrange to-doritosRed text-white px-8 py-3 rounded-full font-extrabold uppercase text-xs tracking-wider shadow-lg shadow-doritosOrange/40 hover:scale-105 transition-all">
+                            Zapisz Ten Mix <i class="fa-solid fa-bookmark ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-24 bg-neutral-950 relative border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-doritosOrange font-bold uppercase tracking-widest text-sm">Opinie Społeczności</span>
+                <h2 class="font-display text-4xl sm:text-6xl font-black uppercase mt-2 mb-4">Co Mówią Legendy Chrupania?</h2>
+                <p class="text-neutral-400">Sprawdź, dlaczego gracze, streamery i fani imprez wybierają Doritos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-neutral-900 border border-white/10 rounded-2xl p-8 flex flex-col justify-between hover:border-doritosOrange transition-colors">
+                    <div>
+                        <div class="flex items-center text-yellow-400 space-x-1 mb-4 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-neutral-300 italic mb-6">"Flamin' Hot to absolutny sztos do sesji gamingowych w nocy. Chrupią tak głośno, że słychać na czacie głosowym, ale warto!"</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-doritosRed to-doritosOrange flex items-center justify-center font-display font-black text-lg">
+                            KP
+                        </div>
+                        <div>
+                            <h4 class="font-display font-bold uppercase tracking-wide">Kacper "ProGamer"</h4>
+                            <span class="text-xs text-neutral-400">Streamer Twitch</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-neutral-900 border border-white/10 rounded-2xl p-8 flex flex-col justify-between hover:border-doritosBlue transition-colors">
+                    <div>
+                        <div class="flex items-center text-yellow-400 space-x-1 mb-4 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-neutral-300 italic mb-6">"Cool Ranch to najlepszy balans ziół i chrupkości. Paczka znika w 5 minut podczas oglądania serialu ze znajomymi."</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-doritosBlue to-cyan-500 flex items-center justify-center font-display font-black text-lg">
+                            OL
+                        </div>
+                        <div>
+                            <h4 class="font-display font-bold uppercase tracking-wide">Ola "Lola"</h4>
+                            <span class="text-xs text-neutral-400">Fanka Imprez</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-neutral-900 border border-white/10 rounded-2xl p-8 flex flex-col justify-between hover:border-doritosGreen transition-colors">
+                    <div>
+                        <div class="flex items-center text-yellow-400 space-x-1 mb-4 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-neutral-300 italic mb-6">"Sweet Chili pepper daje idealne uderzenie słodyczy i pikanterii. Nie ma lepszych chipsów na polskim rynku!"</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-doritosGreen to-emerald-500 flex items-center justify-center font-display font-black text-lg">
+                            TM
+                        </div>
+                        <div>
+                            <h4 class="font-display font-bold uppercase tracking-wide">Tomek "Młody"</h4>
+                            <span class="text-xs text-neutral-400">Koneser Przekąsek</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-doritosOrange to-doritosRed flex items-center justify-center">
+                    <i class="fa-solid fa-triangle text-white text-sm"></i>
+                </div>
+                <span class="font-display font-bold text-xl tracking-wider">DORITOS EXTREME</span>
+            </div>
+            <p class="text-neutral-500 text-xs text-center md:text-left">
+                &copy; 2026 Doritos Fan Page. Wszelkie prawa zastrzeżone. Stworzone z pasją do chrupania.
+            </p>
+            <div class="flex space-x-4 text-neutral-400 text-xl">
+                <a href="#" class="hover:text-doritosOrange transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-doritosOrange transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-doritosOrange transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="hover:text-doritosOrange transition-colors"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Modal -->
+    <div id="orderModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md hidden">
+        <div class="bg-neutral-900 border border-white/10 rounded-3xl p-8 max-w-md w-full mx-4 relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-doritosOrange to-doritosRed flex items-center justify-center mx-auto mb-4 shadow-lg shadow-doritosOrange/30">
+                    <i class="fa-solid fa-box-open text-2xl text-white"></i>
+                </div>
+                <h3 class="font-display text-2xl font-black uppercase">Zamów Zestaw Doritos</h3>
+                <p class="text-neutral-400 text-xs mt-1">Wprowadź swój email, aby otrzymać kod rabatowy -20% na paczkę w sklepie!</p>
+            </div>
+            <form onsubmit="handleOrder(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs uppercase font-bold text-neutral-400 mb-1">Twój Email</label>
+                    <input type="email" required placeholder="gracz@example.com" class="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-doritosOrange text-sm">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-doritosOrange to-doritosRed text-white font-extrabold py-3.5 rounded-xl uppercase tracking-wider text-xs shadow-lg shadow-doritosOrange/40 hover:scale-[1.02] transition-transform">
+                    Odbierz Kod Rabatowy
+                </button>
+            </form>
+            <div id="modal-success" class="hidden mt-4 p-3 bg-green-500/20 border border-green-500 text-green-400 rounded-xl text-center text-xs font-bold">
+                Sukces! Kod rabatowy został wysłany na podany email.
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-neutral-900 border border-doritosOrange text-white px-6 py-3 rounded-xl shadow-2xl transform translate-y-32 transition-transform duration-300 flex items-center space-x-3">
+        <i class="fa-solid fa-circle-check text-doritosOrange text-lg"></i>
+        <span id="toast-msg" class="text-sm font-bold">Zapisano mix w pamięci!</span>
+    </div>
+
+    <script>
+        // Data for flavors
+        const flavorsData = {
+            nacho: {
+                title: "Nacho Cheese",
+                desc: "Ikoniczny smak chrupiących tortilli kukurydzianych z bogatą kompozycją topionego sera cheddar i sekretnych przypraw. Prawdziwa legenda imprez i gamingu.",
+                tag: "Bestseller",
+                tagColor: "bg-doritosOrange text-black",
+                icon: "fa-fire",
+                iconBg: "from-doritosOrange to-yellow-500",
+                glow: "rgba(255, 69, 0, 0.2)",
+                spiceText: "Średni (2/5)",
+                spiceWidth: "40%",
+                crunchText: "Ekstremalny (5/5)",
+                crunchWidth: "100%",
+                chipGradient: "linear-gradient(135deg, #ffb703 0%, #ff4500 50%, #cc1100 100%)",
+                accentColor: "neon-glow-orange",
+                gradientHex: "#ff4500"
+            },
+            flamin: {
+                title: "Flamin' Hot",
+                desc: "Eksplozja ostrej papryki chili i limonki. Dla tych, którzy nie boją się potu na czole i ekstremalnych wrażeń smakowych w każdej sekundzie.",
+                tag: "Najostrzejszy",
+                tagColor: "bg-doritosRed text-white",
+                icon: "fa-pepper-hot",
+                iconBg: "from-doritosRed to-rose-600",
+                glow: "rgba(230, 0, 18, 0.2)",
+                spiceText: "Ekstremalny (5/5)",
+                spiceWidth: "100%",
+                crunchText: "Maksymalny (4/5)",
+                crunchWidth: "85%",
+                chipGradient: "linear-gradient(135deg, #ff3333 0%, #cc0000 50%, #660000 100%)",
+                accentColor: "neon-glow-red",
+                gradientHex: "#e60012"
+            },
+            ranch: {
+                title: "Cool Ranch",
+                desc: "Orzeźwiająca kompozycja maślanki, ziół ogrodowych, czosnku i cebuli. Idealna przeciwwaga dla pikantnych dań, uwielbiana przez graczy.",
+                tag: "Fan Favorite",
+                tagColor: "bg-doritosBlue text-white",
+                icon: "fa-snowflake",
+                iconBg: "from-doritosBlue to-cyan-500",
+                glow: "rgba(0, 162, 255, 0.2)",
+                spiceText: "Łagodny (1/5)",
+                spiceWidth: "20%",
+                crunchText: "Chrupiący (4/5)",
+                crunchWidth: "80%",
+                chipGradient: "linear-gradient(135deg, #00b4d8 0%, #0077b6 50%, #03045e 100%)",
+                accentColor: "neon-glow-blue",
+                gradientHex: "#00a2ff"
+            },
+            sweet: {
+                title: "Sweet Chili Pepper",
+                desc: "Perfekcyjne połączenie słodkiej nuty azjatyckiego chili z chrupiącą kukurydzą. Słodki początek i pikantny finisz, który uzależnia.",
+                tag: "Unikalny Smak",
+                tagColor: "bg-doritosGreen text-black",
+                icon: "fa-bolt",
+                iconBg: "from-doritosGreen to-emerald-500",
+                glow: "rgba(0, 204, 102, 0.2)",
+                spiceText: "Umiarkowany (3/5)",
+                spiceWidth: "60%",
+                crunchText: "Ekstremalny (5/5)",
+                crunchWidth: "100%",
+                chipGradient: "linear-gradient(135deg, #52b788 0%, #2d6a4f 50%, #1b4332 100%)",
+                accentColor: "neon-glow-green",
+                gradientHex: "#00cc66"
+            }
+        };
+
+        function setFlavor(key) {
+            const data = flavorsData[key];
+            
+            // Update active tab borders
+            document.querySelectorAll('.flavor-tab').forEach(el => {
+                el.classList.remove('border-doritosOrange', 'border-doritosRed', 'border-doritosBlue', 'border-doritosGreen');
+                el.classList.add('border-white/10');
+            });
+            const activeBtn = document.getElementById(`btn-${key}`);
+            if (key === 'nacho') activeBtn.classList.add('border-doritosOrange');
+            if (key === 'flamin') activeBtn.classList.add('border-doritosRed');
+            if (key === 'ranch') activeBtn.classList.add('border-doritosBlue');
+            if (key === 'sweet') activeBtn.classList.add('border-doritosGreen');
+
+            // Update display content
+            document.getElementById('flavor-title').innerText = data.title;
+            document.getElementById('flavor-desc').innerText = data.desc;
+            const tagEl = document.getElementById('flavor-tag');
+            tagEl.innerText = data.tag;
+            tagEl.className = `font-extrabold text-xs uppercase px-3 py-1 rounded-full ${data.tagColor}`;
+            
+            document.getElementById('flavor-large-icon').className = `fa-solid ${data.icon} text-7xl text-white`;
+            
+            const badgeIcon = document.getElementById('flavor-badge-icon');
+            badgeIcon.className = `w-40 h-40 sm:w-56 sm:h-56 mx-auto rounded-3xl bg-gradient-to-tr ${data.iconBg} flex items-center justify-center shadow-2xl transform hover:rotate-6 transition-transform`;
+
+            document.getElementById('spice-text').innerText = data.spiceText;
+            document.getElementById('spice-bar').style.width = data.spiceWidth;
+            document.getElementById('crunch-text').innerText = data.crunchText;
+            document.getElementById('crunch-bar').style.width = data.crunchWidth;
+
+            document.getElementById('flavor-box-glow').style.backgroundColor = data.gradientHex + '20';
+            document.getElementById('hero-glow').style.backgroundColor = data.gradientHex + '20';
+            document.getElementById('hero-title-accent').className = `bg-gradient-to-r from-doritosOrange via-doritosRed to-yellow-500 bg-clip-text text-transparent`;
+            
+            // Update main chip SVG gradient
+            const stop1 = document.querySelector('#chipGradient stop:nth-child(1)');
+            const stop2 = document.querySelector('#chipGradient stop:nth-child(2)');
+            const stop3 = document.querySelector('#chipGradient stop:nth-child(3)');
+            if(key === 'nacho') { stop1.setAttribute('stop-color', '#ffb703'); stop2.setAttribute('stop-color', '#ff4500'); stop3.setAttribute('stop-color', '#cc1100'); }
+            if(key === 'flamin') { stop1.setAttribute('stop-color', '#ff3333'); stop2.setAttribute('stop-color', '#cc0000'); stop3.setAttribute('stop-color', '#550000'); }
+            if(key === 'ranch') { stop1.setAttribute('stop-color', '#48cae4'); stop2.setAttribute('stop-color', '#0077b6'); stop3.setAttribute('stop-color', '#03045e'); }
+            if(key === 'sweet') { stop1.setAttribute('stop-color', '#74c69d'); stop2.setAttribute('stop-color', '#2d6a4f'); stop3.setAttribute('stop-color', '#1b4332'); }
+        }
+
+        // Generator logic
+        function updateGenerator() {
+            const base = document.getElementById('gen-base').value;
+            const crunchVal = document.getElementById('gen-crunch-slider').value;
+            const heatVal = document.getElementById('gen-heat-slider').value;
+
+            document.getElementById('val-base').innerText = base;
+            document.getElementById('val-crunch').innerText = crunchVal + '%';
+            
+            let heatText = "Łagodny (1/5)";
+            if(heatVal == 2) heatText = "Średni (2/5)";
+            if(heatVal == 3) heatText = "Mocny (3/5)";
+            if(heatVal == 4) heatText = "Ogień (4/5)";
+            if(heatVal == 5) heatText = "Ekstremalny (5/5)";
+            document.getElementById('val-heat').innerText = heatText;
+
+            let name = "Ultra Custom Cheddar";
+            let desc = `Wyjątkowy mix na bazie "${base}" z chrupkością na poziomie ${crunchVal}% i mocą ostrości ${heatVal}/5.`;
+
+            if(heatVal >= 4 && crunchVal > 90) {
+                name = "Volcano Mega-Crunch Inferno";
+                desc = "Eksplozja ostrej papryki i maksymalnej chrupkości dla twardzieli.";
+            } else if(heatVal <= 2) {
+                name = "Chill & Creamy Triangle";
+                desc = "Delikatna, chrupiąca przekąska o łagodnym, maślano-serowym profilu.";
+            }
+
+            document.getElementById('result-name').innerText = name;
+            document.getElementById('result-desc').innerText = desc;
+        }
+
+        function saveMix() {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = "Twój customowy mix został zapisany!";
+            toast.classList.remove('translate-y-32');
+            setTimeout(() => {
+                toast.classList.add('translate-y-32');
+            }, 3000);
+        }
+
+        // Modal Logic
+        function openModal() {
+            document.getElementById('orderModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').classList.add('hidden');
+            document.getElementById('modal-success').classList.add('hidden');
+        }
+
+        function handleOrder(e) {
+            e.preventDefault();
+            document.getElementById('modal-success').classList.remove('hidden');
+            setTimeout(() => {
+                closeModal();
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
